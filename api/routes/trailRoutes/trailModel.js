@@ -23,7 +23,7 @@ const trailSchema = mongoose.Schema({
 		required: true
 	},
 	rating: {
-		type: string,
+		type: String,
 		required: true
 	},
 	elevation: {

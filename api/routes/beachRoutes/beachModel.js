@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const services = require('./../serviceRoutes/serviceModel').Schema
 
 // Setup schema
 const beachSchema = mongoose.Schema({
@@ -15,7 +16,7 @@ const beachSchema = mongoose.Schema({
 		required: true
 	},
 	services: {
-		type: Array,
+		type: [services],
 		required: true
 	}
 })
