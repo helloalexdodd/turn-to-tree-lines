@@ -13,11 +13,11 @@ router.get('/', function (req, res) {
 const beachController = require('./beachService')
 
 // beach routes
-router.route('/beachs')
+router.route('/beaches')
 	.get(beachController.index)
 	.post(beachController.new)
 
-router.route('/beachs/:beach_id')
+router.route('/beaches/:beach_id')
 	.get(beachController.view)
 	.patch(beachController.update)
 	.put(beachController.update)

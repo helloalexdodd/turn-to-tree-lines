@@ -4,10 +4,6 @@ const trails = require('./../trailRoutes/trailModel').Schema
 
 // Setup schema
 const campgroundSchema = mongoose.Schema({
-	id: {
-		type: String,
-		required: true
-	},
 	name: {
 		type: String,
 		required: true

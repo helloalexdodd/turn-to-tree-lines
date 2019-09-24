@@ -3,10 +3,6 @@ const services = require('./../serviceRoutes/serviceModel').Schema
 
 // Setup schema
 const beachSchema = mongoose.Schema({
-	id: {
-		type: String,
-		required: true
-	},
 	name: {
 		type: String,
 		required: true
