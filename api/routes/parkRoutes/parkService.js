@@ -31,6 +31,7 @@ exports.new = function (req, res) {
 	park.map = req.body.map
 	park.thingsToDo = req.body.thingsToDo
 	park.campgrounds = req.body.campgrounds
+
 	// save the park and check for errors
 	park.save(function (err) {
 		if (err) {
@@ -52,7 +53,7 @@ exports.view = function (req, res) {
 			return
 		}
 		res.json({
-			message: 'park details loading..',
+			message: 'Park details loading..',
 			data: park
 		})
 	})
@@ -65,6 +66,7 @@ exports.update = function (req, res) {
 			res.send(err)
 			return
 		}
+
 		park.name = req.body.name ? req.body.name : park.name
 		park.province = req.body.province
 		park.location = req.body.location
@@ -101,7 +103,7 @@ exports.delete = function (req, res) {
 		}	
 		res.json({
 			status: "success",
-			message: 'park deleted'
+			message: 'Park deleted'
 		})
 	})
 }

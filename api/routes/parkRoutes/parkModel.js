@@ -1,4 +1,6 @@
 const mongoose = require('mongoose')
+const activities = require('./../activityRoutes/activityModel').Schema
+const campgrounds = require('./../campgroundRoutes/campgroundModel').Schema
 
 // Setup schema
 const parkSchema = mongoose.Schema({
@@ -8,7 +10,6 @@ const parkSchema = mongoose.Schema({
 	},
 	province: {
 		type: String,
-		required: true,
 		enum: [
 			"Alberta",
 			"British Columbia",
@@ -23,7 +24,8 @@ const parkSchema = mongoose.Schema({
 			"Quebec",
 			"Saskatchewan",
 			"Yukon"
-		]
+		], ymt 5
+		required: true
 	},
 	location: {
 		type: {
@@ -57,11 +59,11 @@ const parkSchema = mongoose.Schema({
 		required: true
 	},
 	thingsToDo: {
-		type: Array,
+		type: [activities],
 		required: false
 	},
 	campgrounds: {
-		type: Array,
+		type: [campgrounds],
 		required: false
 	}
 })
