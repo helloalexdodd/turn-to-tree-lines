@@ -1,5 +1,5 @@
 // Import campground model
-Campground = require('./campgroundModel')
+const Campground = require('./campgroundModel')
 
 // Handle index actions
 exports.index = function (req, res) {

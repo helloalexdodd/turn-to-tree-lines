@@ -3,6 +3,10 @@ const bodyParser = require('body-parser')
 const http = require('http')
 const mongoose = require('mongoose')
 const app = express()
+const { applyMiddleware } = require('./api/utils')
+const middleWare = require('./api/middleware')
+const { router: userRoutes } = require('./api/users/userRoutes');
+const { URL, PORT } = require('./api/utils/constants')
 const activityRoutes = require("./api/routes/activityRoutes/activityRoutes")
 const beachRoutes = require("./api/routes/beachRoutes/beachRoutes")
 const campgroundRoutes = require("./api/routes/campgroundRoutes/campgroundRoutes")
@@ -10,10 +14,6 @@ const facilityRoutes = require("./api/routes/facilityRoutes/facilityRoutes")
 const parkRoutes = require("./api/routes/parkRoutes/parkRoutes")
 const serviceRoutes = require("./api/routes/serviceRoutes/serviceRoutes")
 const trailRoutes = require("./api/routes/trailRoutes/trailRoutes")
-const { applyMiddleware } = require('./api/utils')
-const middleWare = require('./api/middleware')
-const { router: userRoutes } = require('./api/users/userRoutes');
-const { URL, PORT } = require('./api/utils/constants')
 
 // Configure bodyparser to handle post requests
 app.use(bodyParser.urlencoded({
@@ -47,7 +47,7 @@ if (!db) {
 }
 
 // Send message for default URL
-app.get('/', (req, res) => res.send("A successful call! Read the documentation to learn which endpoints you can hit for the information you're looking for."))
+app.get('/', (req, res) => res.send("A successful call! Read the documentation to learn which endpoints you can hit for the specific information you're looking for."))
 
 // Use Api routes in the App
 app.use('/api', activityRoutes)

@@ -1,5 +1,5 @@
 // Import service model
-Service = require('./serviceModel')
+const Service = require('./serviceModel')
 
 // Handle index actions
 exports.index = function (req, res) {

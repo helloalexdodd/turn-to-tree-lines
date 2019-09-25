@@ -1,5 +1,5 @@
 // Import beach model
-Beach = require('./beachModel')
+const Beach = require('./beachModel')
 
 // Handle index actions
 exports.index = function (req, res) {

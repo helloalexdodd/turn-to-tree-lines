@@ -1,9 +1,12 @@
 // Import park model
-Park = require('./parkModel')
+const Park = require('./parkModel')
+// Import activities model
+const activities = require('./../activityRoutes/activityModel')
 
 // Handle index actions
 exports.index = function (req, res) {
 	Park.get(function (err, parks) {
+		console.log(activities)
 		if (err) {
 			res.json({
 				status: "error",
@@ -29,6 +32,7 @@ exports.new = function (req, res) {
 	park.region = req.body.region
 	park.description = req.body.description
 	park.map = req.body.map
+
 
 	// save the park and check for errors
 	park.save(function (err) {

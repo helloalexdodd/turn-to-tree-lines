@@ -6,35 +6,48 @@ const trails = require('./../trailRoutes/trailModel').Schema
 const campgroundSchema = mongoose.Schema({
 	name: {
 		type: String,
-		required: true
+		required: true,
+		default: ""
 	},
 	campsites: {
 		type: Number,
-		required: true
+		required: false,
+		default: 0
 	},
 	description: {
 		type: String,
-		required: true
+		required: false,
+		default: ""
 	},
-	facilities: {
-		type: Array,
-		required: true
-	},
-	map: {
+	reserveDates: {
 		type: String,
-		required: true
+		required: false,
+		default: ""
 	},
-	link: {
+	openDates: {
 		type: String,
-		required: true
-	},
-	trails: {
-		type: [trails],
-		required: true
+		required: false,
+		default: ""
 	},
 	facilities: {
 		type: [facilities],
-		required: true
+		required: true,
+		default: []
+	},
+	map: {
+		type: String,
+		required: true,
+		default: ""
+	},
+	link: {
+		type: String,
+		required: true,
+		default: ""
+	},
+	trails: {
+		type: [trails],
+		required: true,
+		default: ""
 	}
 })
 

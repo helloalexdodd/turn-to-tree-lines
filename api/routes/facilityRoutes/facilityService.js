@@ -1,5 +1,5 @@
 // Import facility model
-Facility = require('./facilityModel')
+const Facility = require('./facilityModel')
 
 // Handle index actions
 exports.index = function (req, res) {

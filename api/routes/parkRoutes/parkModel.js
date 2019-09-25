@@ -4,7 +4,6 @@ const campgrounds = require('./../campgroundRoutes/campgroundModel').Schema
 const beaches = require('./../beachRoutes/beachModel').Schema
 const trails = require('./../trailRoutes/trailModel').Schema
 
-
 // Setup schema
 const parkSchema = mongoose.Schema({
 	name: {

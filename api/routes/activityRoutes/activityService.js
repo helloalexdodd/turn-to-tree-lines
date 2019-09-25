@@ -1,5 +1,5 @@
 // Import activity model
-Activity = require('./activityModel')
+const Activity = require('./activityModel')
 
 // Handle index actions
 exports.index = function (req, res) {

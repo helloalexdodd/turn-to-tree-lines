@@ -1,5 +1,5 @@
 // Import trail model
-Trail = require('./trailModel')
+const Trail = require('./trailModel')
 
 // Handle index actions
 exports.index = function (req, res) {

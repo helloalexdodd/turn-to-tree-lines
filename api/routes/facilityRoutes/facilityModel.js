@@ -4,11 +4,24 @@ const mongoose = require('mongoose')
 const facilitySchema = mongoose.Schema({
 	name: {
 		type: String,
-		required: true
+		enum: [
+			"Electricity",
+			"Water and sewage",
+			"Flush toilet",
+			"Dry toilet",
+			"Shower",
+			"Sewage disposal",
+			"Fire pits",
+			"Interpretive program",
+			"Accessible"
+		],
+		required: true,
+		default: ""
 	},
 	symbol: {
 		type: String,
-		required: true
+		required: false,
+		default: ""
 	}
 })
 
