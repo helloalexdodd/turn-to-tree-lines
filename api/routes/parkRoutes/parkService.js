@@ -21,7 +21,7 @@ exports.index = function (req, res) {
 // Handle create park actions
 exports.new = function (req, res) {
 	const park = new Park()
-	park.name = req.body.name ? req.body.name : park.name
+	park.name = req.body.name
 	park.province = req.body.province
 	park.location = req.body.location
 	park.established = req.body.established
@@ -29,8 +29,6 @@ exports.new = function (req, res) {
 	park.region = req.body.region
 	park.description = req.body.description
 	park.map = req.body.map
-	park.thingsToDo = req.body.thingsToDo
-	park.campgrounds = req.body.campgrounds
 
 	// save the park and check for errors
 	park.save(function (err) {
@@ -68,15 +66,13 @@ exports.update = function (req, res) {
 		}
 
 		park.name = req.body.name ? req.body.name : park.name
-		park.province = req.body.province
-		park.location = req.body.location
-		park.established = req.body.established
-		park.area = req.body.area
-		park.region = req.body.region
-		park.description = req.body.description
-		park.map = req.body.map
-		park.thingsToDo = req.body.thingsToDo
-		park.campgrounds = req.body.campgrounds
+		park.province = req.body.province ? req.body.province : park.province
+		park.location = req.body.location ? req.body.location : park.location
+		park.established = req.body.established ? req.body.established : park.established
+		park.area = req.body.area ? req.body.area : park.area
+		park.region = req.body.region ? req.body.region : park.region
+		park.description = req.body.description ? req.body.description : park.description
+		park.map = req.body.map ? req.body.map : park.map
 
 		// save the park and check for errors
 		park.save(function (err) {

@@ -21,8 +21,7 @@ exports.index = function (req, res) {
 // Handle create activity actions
 exports.new = function (req, res) {
 	const activity = new Activity()
-	activity.name = req.body.name ? req.body.name : activity.name
-	activity.id = req.body.id
+	activity.name = req.body.name
 	activity.symbol = req.body.symbol
 
 	// save the activity and check for errors
@@ -60,8 +59,7 @@ exports.update = function (req, res) {
 			return
 		}
 		activity.name = req.body.name ? req.body.name : activity.name
-		activity.id = req.body.id
-		activity.symbol = req.body.symbol
+		activity.symbol = req.body.symbol ? req.body.symbol : activity.symbol
 		
 		// save the activity and check for errors
 		activity.save(function (err) {

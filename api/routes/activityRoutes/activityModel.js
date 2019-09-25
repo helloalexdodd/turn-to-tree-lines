@@ -4,11 +4,13 @@ const mongoose = require('mongoose')
 const activitySchema = mongoose.Schema({
 	name: {
 		type: String,
-		required: true
+		required: true,
+		default: ""
 	},
 	symbol: {
 		type: String,
-		required: true
+		required: true,
+		default: ""
 	}
 })
 
