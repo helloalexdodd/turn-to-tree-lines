@@ -22,7 +22,6 @@ exports.index = function (req, res) {
 exports.new = function (req, res) {
 	const trail = new Trail()
 	trail.name = req.body.name ? req.body.name : trail.name
-	trail.id = req.body.id
 	trail.description = req.body.description
 	trail.length = req.body.length
 	trail.loop = req.body.loop
@@ -69,7 +68,6 @@ exports.update = function (req, res) {
 		}
 
 		trail.name = req.body.name ? req.body.name : trail.name
-		trail.id = req.body.id
 		trail.description = req.body.description
 		trail.length = req.body.length
 		trail.loop = req.body.loop

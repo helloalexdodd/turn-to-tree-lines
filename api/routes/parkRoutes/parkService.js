@@ -68,7 +68,7 @@ exports.update = function (req, res) {
 			res.send(err)
 			return
 		}
-
+		console.log(activities)
 		park.name = req.body.name ? req.body.name : park.name
 		park.province = req.body.province ? req.body.province : park.province
 		park.location = req.body.location ? req.body.location : park.location
@@ -77,6 +77,7 @@ exports.update = function (req, res) {
 		park.region = req.body.region ? req.body.region : park.region
 		park.description = req.body.description ? req.body.description : park.description
 		park.map = req.body.map ? req.body.map : park.map
+		
 
 		// save the park and check for errors
 		park.save(function (err) {

@@ -15,13 +15,11 @@ const facilitySchema = mongoose.Schema({
 			"Interpretive program",
 			"Accessible"
 		],
-		required: true,
-		default: ""
+		required: true
 	},
 	symbol: {
 		type: String,
-		required: false,
-		default: ""
+		required: false
 	}
 })
 

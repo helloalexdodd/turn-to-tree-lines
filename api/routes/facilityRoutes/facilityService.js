@@ -21,9 +21,8 @@ exports.index = function (req, res) {
 // Handle create facility actions
 exports.new = function (req, res) {
 	const facility = new Facility()
-	facility.name = req.body.name ? req.body.name : facility.name
-	facility.id = req.body.id
-	facility.symbol = req.body.symbol
+	facility.name = req.body.name
+	facility.symbol = req.body.symbol ? req.body.symbol : facility.symbol
 	
 	// save the facility and check for errors
 	facility.save(function (err) {
@@ -46,7 +45,7 @@ exports.view = function (req, res) {
 			return
 		}
 		res.json({
-			message: 'facility details loading..',
+			message: 'Facility details loading..',
 			data: facility
 		})
 	})
@@ -61,8 +60,7 @@ exports.update = function (req, res) {
 		}
 		
 		facility.name = req.body.name ? req.body.name : facility.name
-		facility.id = req.body.id
-		facility.symbol = req.body.symbol
+		facility.symbol = req.body.symbol ? req.body.symbol : facility.symbol
 
 		// save the facility and check for errors
 		facility.save(function (err) {

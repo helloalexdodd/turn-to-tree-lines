@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
-const activities = require('./../activityRoutes/activityModel').Schema
-const campgrounds = require('./../campgroundRoutes/campgroundModel').Schema
-const beaches = require('./../beachRoutes/beachModel').Schema
-const trails = require('./../trailRoutes/trailModel').Schema
+const activitySchema = require('./../activityRoutes/activityModel').Schema
+const campgroundSchema = require('./../campgroundRoutes/campgroundModel').Schema
+const beachSchema = require('./../beachRoutes/beachModel').Schema
+const trailSchema = require('./../trailRoutes/trailModel').Schema
 
 // Setup schema
 const parkSchema = mongoose.Schema({
@@ -61,19 +61,19 @@ const parkSchema = mongoose.Schema({
 		required: true
 	},
 	thingsToDo: {
-		type: [activities],
+		type: [activitySchema],
 		required: false
 	},
 	campgrounds: {
-		type: [campgrounds],
+		type: [campgroundSchema],
 		required: false
 	},
 	beaches: {
-		type: [beaches],
+		type: [beachSchema],
 		required: false
 	},
 	trails: {
-		type: [trails],
+		type: [trailSchema],
 		required: false
 	}
 })

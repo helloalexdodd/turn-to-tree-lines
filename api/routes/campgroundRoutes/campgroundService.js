@@ -21,15 +21,15 @@ exports.index = function (req, res) {
 // Handle create campground actions
 exports.new = function (req, res) {
 	const campground = new Campground()
-	campground.name = req.body.name ? req.body.name : campground.name
-	campground.id = req.body.id
+	campground.name = req.body.name
 	campground.campsites = req.body.campsites
-	campground.description = req.body.description
+	campground.notes = req.body.notes
+	campground.reserveDates = req.body.reserveDates
+	campground.openDates = req.body.openDates
 	campground.facilities = req.body.facilities
 	campground.map = req.body.map
 	campground.link = req.body.link
 	campground.trails = req.body.trails
-	campground.thingsToDo = req.body.facilities
 
 	// save the campground and check for errors
 	campground.save(function (err) {
@@ -66,14 +66,14 @@ exports.update = function (req, res) {
 			return
 		}
 		campground.name = req.body.name ? req.body.name : campground.name
-		campground.id = req.body.id
-		campground.campsites = req.body.campsites
-		campground.description = req.body.description
-		campground.facilities = req.body.facilities
-		campground.map = req.body.map
-		campground.link = req.body.link
-		campground.trails = req.body.trails
-		campground.thingsToDo = req.body.facilities
+		campground.campsites = req.body.campsites ? req.body.campsites : campground.campsites
+		campground.notes = req.body.notes ? req.body.notes : campground.notes
+		campground.reserveDates = req.body.reserveDates ? req.body.reserveDates : campground.reserveDates
+		campground.openDates = req.body.openDates ? req.body.openDates : campground.openDates
+		campground.facilities = req.body.facilities ? req.body.facilities : campground.facilities
+		campground.map = req.body.map ? req.body.map : campground.map
+		campground.link = req.body.link ? req.body.link : campground.link
+		campground.trails = req.body.trails ? req.body.trails : campground.trails
 
 		// save the campground and check for errors
 		campground.save(function (err) {
