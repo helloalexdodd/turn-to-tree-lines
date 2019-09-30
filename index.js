@@ -7,13 +7,6 @@ const { applyMiddleware } = require('./api/utils')
 const middleWare = require('./api/middleware')
 const { router: userRoutes } = require('./api/users/userRoutes');
 const { URL, PORT } = require('./api/utils/constants')
-const activityRoutes = require("./api/routes/activityRoutes/activityRoutes")
-const beachRoutes = require("./api/routes/beachRoutes/beachRoutes")
-const campgroundRoutes = require("./api/routes/campgroundRoutes/campgroundRoutes")
-const facilityRoutes = require("./api/routes/facilityRoutes/facilityRoutes")
-const parkRoutes = require("./api/routes/parkRoutes/parkRoutes")
-const serviceRoutes = require("./api/routes/serviceRoutes/serviceRoutes")
-const trailRoutes = require("./api/routes/trailRoutes/trailRoutes")
 
 // Configure bodyparser to handle post requests
 app.use(bodyParser.urlencoded({
@@ -49,6 +42,16 @@ if (!db) {
 // Send message for default URL
 app.get('/', (req, res) => res.send("A successful call! Read the documentation to learn which endpoints you can hit for the specific information you're looking for."))
 
+// links to all routes
+const activityRoutes = require("./api/routes/activityRoutes/activityRoutes")
+const beachRoutes = require("./api/routes/beachRoutes/beachRoutes")
+const campgroundRoutes = require("./api/routes/campgroundRoutes/campgroundRoutes")
+const facilityRoutes = require("./api/routes/facilityRoutes/facilityRoutes")
+const parkRoutes = require("./api/routes/parkRoutes/parkRoutes")
+const serviceRoutes = require("./api/routes/serviceRoutes/serviceRoutes")
+const trailRoutes = require("./api/routes/trailRoutes/trailRoutes")
+const featureRoutes = require("./api/routes/featureRoutes/featureRoutes")
+
 // Use Api routes in the App
 app.use('/api', activityRoutes)
 app.use('/api', beachRoutes)
@@ -57,3 +60,4 @@ app.use('/api', facilityRoutes)
 app.use('/api', parkRoutes)
 app.use('/api', serviceRoutes)
 app.use('/api', trailRoutes)
+app.use('/api', featureRoutes)

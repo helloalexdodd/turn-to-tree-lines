@@ -1,7 +1,7 @@
-// Initialize express router
 const router = require('express').Router()
+const parkController = require('./parkService')
+const requireAuth = require('./../../middleware/auth')
 
-// Set default API response
 router.get('/', function (req, res) {
 	res.json({
 		status: 'Its Working',
@@ -9,10 +9,6 @@ router.get('/', function (req, res) {
 	})
 })
 
-// Import park controller
-const parkController = require('./parkService')
-
-// Park routes
 router.route('/parks')
 	.get(parkController.index)
 	.post(parkController.new)
@@ -23,5 +19,4 @@ router.route('/parks/:park_id')
 	.put(parkController.update)
 	.delete(parkController.delete)
 
-// Export API routes
 module.exports = router

@@ -1,7 +1,7 @@
-// Initialize express router
-let router = require('express').Router()
+const router = require('express').Router()
+const beachController = require('./beachService')
+const requireAuth = require('./../../middleware/auth')
 
-// Set default API response
 router.get('/', function (req, res) {
 	res.json({
 		status: 'Its Working',
@@ -9,19 +9,14 @@ router.get('/', function (req, res) {
 	})
 })
 
-// Import beach controller
-const beachController = require('./beachService')
-
-// beach routes
 router.route('/beaches')
-	.get(beachController.index)
-	.post(beachController.new)
+	.get(requireAuth, beachController.index)
+	.post(requireAuth, beachController.new)
 
 router.route('/beaches/:beach_id')
-	.get(beachController.view)
-	.patch(beachController.update)
-	.put(beachController.update)
-	.delete(beachController.delete)
+	.get(requireAuth, beachController.view)
+	.patch(requireAuth, beachController.update)
+	.put(requireAuth, beachController.update)
+	.delete(requireAuth, beachController.delete)
 
-// Export API routes
 module.exports = router

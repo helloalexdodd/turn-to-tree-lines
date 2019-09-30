@@ -7,7 +7,6 @@ router
 	.route('/signup')
 	.post(async (req, res, next) => {
 		try {
-			console.log(req.body)
 			const user = await userService.createUser(req.body);
 			res.status(201).json({
 				data: [user]

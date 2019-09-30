@@ -58,6 +58,7 @@ exports.update = function (req, res) {
 			res.send(err)
 			return
 		}
+		
 		activity.name = req.body.name ? req.body.name : activity.name
 		activity.symbol = req.body.symbol ? req.body.symbol : activity.symbol
 		
@@ -77,7 +78,6 @@ exports.update = function (req, res) {
 
 // Handle delete activity
 exports.delete = function (req, res) {
-	console.log(req.params)
 	Activity.remove({
 		_id: req.params.activity_id
 	}, function (err, activity) {
@@ -86,7 +86,7 @@ exports.delete = function (req, res) {
 		}	
 		res.json({
 			status: "success",
-			message: 'Activity deleted'
+			message: `${activity} deleted`
 		})
 	})
 }

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 
-const activitySchema = mongoose.Schema({
+// Setup schema
+const featureSchema = mongoose.Schema({
 	name: {
 		type: String,
 		required: true,
@@ -13,8 +14,9 @@ const activitySchema = mongoose.Schema({
 	}
 })
 
-const Activity = module.exports = mongoose.model('activity', activitySchema)
+// Export Contact model
+const Feature = module.exports = mongoose.model('feature', featureSchema)
 
 module.exports.get = function (callback, limit) {
-	Activity.find(callback).limit(limit)
+	Feature.find(callback).limit(limit)
 }

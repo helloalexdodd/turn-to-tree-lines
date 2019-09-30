@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
-const facilitySchema = require('./../facilityRoutes/facilityModel').Schema
-const trailSchema = require('./../trailRoutes/trailModel').Schema
+const facilitySchema = require('../facilityRoutes/facilityModel').Schema
+const trailSchema = require('../trailRoutes/trailModel').Schema
 
 // Setup schema
 const campgroundSchema = mongoose.Schema({
@@ -30,22 +30,30 @@ const campgroundSchema = mongoose.Schema({
 		default: ""
 	},
 	facilities: {
-		type: [facilitySchema],
-		required: false
+		type: [{
+			type: mongoose.Schema.Types.ObjectId,
+			ref: facilitySchema
+		}],
+		required: false,
+		default: []
 	},
 	map: {
 		type: String,
-		required: true,
+		required: false,
 		default: ""
 	},
 	link: {
 		type: String,
-		required: true,
+		required: false,
 		default: ""
 	},
 	trails: {
-		type: [trailSchema],
-		required: false
+		type: [{
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'trails'
+		}],
+		required: false,
+		default: []
 	}
 })
 

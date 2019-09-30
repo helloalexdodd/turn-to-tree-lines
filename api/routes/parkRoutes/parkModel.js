@@ -61,20 +61,36 @@ const parkSchema = mongoose.Schema({
 		required: true
 	},
 	thingsToDo: {
-		type: [activitySchema],
-		required: false
+		activities: [{
+			type: mongoose.Schema.Types.ObjectId,
+			ref: activitySchema
+		}],
+		required: false,
+		default: []
 	},
 	campgrounds: {
-		type: [campgroundSchema],
-		required: false
+		campgrounds: [{
+			type: mongoose.Schema.Types.ObjectId,
+			ref: campgroundSchema
+		}],
+		required: false,
+		default: []
 	},
 	beaches: {
-		type: [beachSchema],
-		required: false
+		beaches: [{
+			type: mongoose.Schema.Types.ObjectId,
+			ref: beachSchema
+		}],
+		required: false,
+		default: []
 	},
 	trails: {
-		type: [trailSchema],
-		required: false
+		trails: [{
+			type: mongoose.Schema.Types.ObjectId,
+			ref: trailSchema
+		}],
+		required: false,
+		default: []
 	}
 })
 
@@ -82,5 +98,9 @@ const parkSchema = mongoose.Schema({
 const Park = module.exports = mongoose.model('park', parkSchema) 
 
 module.exports.get = function (callback, limit) {
-	Park.find(callback).limit(limit)
+	Park
+		.find(callback)
+		.limit(limit)
+		.populate(activitySchema)
+		.exec()
 }

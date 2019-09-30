@@ -1,7 +1,7 @@
-// Initialize express router
-let router = require('express').Router()
+const router = require('express').Router()
+const facilityController = require('./facilityService')
+const requireAuth = require('./../../middleware/auth')
 
-// Set default API response
 router.get('/', function (req, res) {
 	res.json({
 		status: 'Its Working',
@@ -9,19 +9,14 @@ router.get('/', function (req, res) {
 	})
 })
 
-// Import facility controller
-const facilityController = require('./facilityService')
-
-// facility routes
 router.route('/facilities')
-	.get(facilityController.index)
-	.post(facilityController.new)
+	.get(requireAuth, facilityController.index)
+	.post(requireAuth, facilityController.new)
 
 router.route('/facilities/:facility_id')
-	.get(facilityController.view)
-	.patch(facilityController.update)
-	.put(facilityController.update)
-	.delete(facilityController.delete)
+	.get(requireAuth, facilityController.view)
+	.patch(requireAuth, facilityController.update)
+	.put(requireAuth, facilityController.update)
+	.delete(requireAuth, facilityController.delete)
 
-// Export API routes
 module.exports = router

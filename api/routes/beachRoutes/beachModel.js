@@ -13,7 +13,8 @@ const beachSchema = mongoose.Schema({
 	},
 	services: {
 		type: [serviceSchema],
-		required: true
+		required: true,
+		default: []
 	}
 })
 

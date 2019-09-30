@@ -15,8 +15,8 @@ const userSchema = new Schema({
 	authorization: {
 		type: String,
 		required: true,
-		enum: ["Admin", "User", "Guest"],
-		default: "User"
+		enum: ['Admin', 'User', 'Guest'],
+		default: 'User'
 	}
 })
 

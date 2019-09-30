@@ -1,7 +1,7 @@
-// Initialize express router
-let router = require('express').Router()
+const router = require('express').Router()
+const activityController = require('./activityService')
+const requireAuth = require('./../../middleware/auth')
 
-// Set default API response
 router.get('/', function (req, res) {
 	res.json({
 		status: 'Its Working',
@@ -9,19 +9,14 @@ router.get('/', function (req, res) {
 	})
 })
 
-// Import activity controller
-const activityController = require('./activityService')
-
-// activity routes
 router.route('/activities')
-	.get(activityController.index)
-	.post(activityController.new)
+	.get(requireAuth, activityController.index)
+	.post(requireAuth, activityController.new)
 
 router.route('/activities/:activity_id')
-	.get(activityController.view)
-	.patch(activityController.update)
-	.put(activityController.update)
-	.delete(activityController.delete)
+	.get(requireAuth, activityController.view)
+	.patch(requireAuth, activityController.update)
+	.put(requireAuth, activityController.update)
+	.delete(requireAuth, activityController.delete)
 
-// Export API routes
 module.exports = router

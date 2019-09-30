@@ -1,12 +1,9 @@
 // Import park model
 const Park = require('./parkModel')
-// Import activities model
-const activities = require('./../activityRoutes/activityModel')
 
 // Handle index actions
 exports.index = function (req, res) {
 	Park.get(function (err, parks) {
-		console.log(activities)
 		if (err) {
 			res.json({
 				status: "error",
@@ -68,7 +65,6 @@ exports.update = function (req, res) {
 			res.send(err)
 			return
 		}
-		console.log(activities)
 		park.name = req.body.name ? req.body.name : park.name
 		park.province = req.body.province ? req.body.province : park.province
 		park.location = req.body.location ? req.body.location : park.location
@@ -77,6 +73,10 @@ exports.update = function (req, res) {
 		park.region = req.body.region ? req.body.region : park.region
 		park.description = req.body.description ? req.body.description : park.description
 		park.map = req.body.map ? req.body.map : park.map
+		park.thingsToDo = req.body.thingsToDo ? req.body.thingsToDo : park.thingsToDo
+		// park.campgrounds = req.body.campgrounds ? req.body.campgrounds : park.campgrounds
+		// park.beaches = req.body.beaches ? req.body.beaches : park.beaches
+		// park.trails = req.body.trails ? req.body.trails : park.trails
 		
 
 		// save the park and check for errors

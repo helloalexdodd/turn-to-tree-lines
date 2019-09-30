@@ -1,7 +1,7 @@
-// Initialize express router
-let router = require('express').Router()
+const router = require('express').Router()
+const campgroundController = require('./campgroundService')
+const requireAuth = require('./../../middleware/auth')
 
-// Set default API response
 router.get('/', function (req, res) {
 	res.json({
 		status: 'Its Working',
@@ -9,19 +9,14 @@ router.get('/', function (req, res) {
 	})
 })
 
-// Import campground controller
-const campgroundController = require('./campgroundService')
-
-// campground routes
 router.route('/campgrounds')
-	.get(campgroundController.index)
-	.post(campgroundController.new)
+	.get(requireAuth, campgroundController.index)
+	.post(requireAuth, campgroundController.new)
 
 router.route('/campgrounds/:campground_id')
-	.get(campgroundController.view)
-	.patch(campgroundController.update)
-	.put(campgroundController.update)
-	.delete(campgroundController.delete)
+	.get(requireAuth, campgroundController.view)
+	.patch(requireAuth, campgroundController.update)
+	.put(requireAuth, campgroundController.update)
+	.delete(requireAuth, campgroundController.delete)
 
-// Export API routes
 module.exports = router

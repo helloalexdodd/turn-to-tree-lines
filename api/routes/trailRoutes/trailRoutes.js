@@ -1,7 +1,7 @@
-// Initialize express router
-let router = require('express').Router()
+const router = require('express').Router()
+const trailController = require('./trailService')
+const requireAuth = require('./../../middleware/auth')
 
-// Set default API response
 router.get('/', function (req, res) {
 	res.json({
 		status: 'Its Working',
@@ -9,19 +9,14 @@ router.get('/', function (req, res) {
 	})
 })
 
-// Import trail controller
-const trailController = require('./trailService')
-
-// trail routes
 router.route('/trails')
-	.get(trailController.index)
-	.post(trailController.new)
+	.get(requireAuth, trailController.index)
+	.post(requireAuth, trailController.new)
 
 router.route('/trails/:trail_id')
-	.get(trailController.view)
-	.patch(trailController.update)
-	.put(trailController.update)
-	.delete(trailController.delete)
+	.get(requireAuth, trailController.view)
+	.patch(requireAuth, trailController.update)
+	.put(requireAuth, trailController.update)
+	.delete(requireAuth, trailController.delete)
 
-// Export API routes
 module.exports = router
