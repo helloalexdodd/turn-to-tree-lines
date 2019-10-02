@@ -29,14 +29,10 @@ const campgroundSchema = mongoose.Schema({
 		required: false,
 		default: ""
 	},
-	facilities: {
-		type: [{
-			type: mongoose.Schema.Types.ObjectId,
-			ref: facilitySchema
-		}],
-		required: false,
-		default: []
-	},
+	facilities: [{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: facilitySchema
+	}],
 	map: {
 		type: String,
 		required: false,
@@ -47,14 +43,10 @@ const campgroundSchema = mongoose.Schema({
 		required: false,
 		default: ""
 	},
-	trails: {
-		type: [{
-			type: mongoose.Schema.Types.ObjectId,
-			ref: 'trails'
-		}],
-		required: false,
-		default: []
-	}
+	trails: [{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: trailSchema
+	}]
 })
 
 // Export Contact model

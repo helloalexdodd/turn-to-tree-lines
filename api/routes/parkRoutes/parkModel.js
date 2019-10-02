@@ -60,38 +60,22 @@ const parkSchema = mongoose.Schema({
 		type: String,
 		required: true
 	},
-	thingsToDo: {
-		activities: [{
-			type: mongoose.Schema.Types.ObjectId,
-			ref: activitySchema
-		}],
-		required: false,
-		default: []
-	},
-	campgrounds: {
-		campgrounds: [{
-			type: mongoose.Schema.Types.ObjectId,
-			ref: campgroundSchema
-		}],
-		required: false,
-		default: []
-	},
-	beaches: {
-		beaches: [{
-			type: mongoose.Schema.Types.ObjectId,
-			ref: beachSchema
-		}],
-		required: false,
-		default: []
-	},
-	trails: {
-		trails: [{
-			type: mongoose.Schema.Types.ObjectId,
-			ref: trailSchema
-		}],
-		required: false,
-		default: []
-	}
+	thingsToDo: [{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: activitySchema
+	}],
+	campgrounds: [{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: campgroundSchema
+	}],
+	beaches: [{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: beachSchema
+	}],
+	trails: [{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: trailSchema
+	}]
 })
 
 // Export Contact model
@@ -103,4 +87,5 @@ module.exports.get = function (callback, limit) {
 		.limit(limit)
 		.populate(activitySchema)
 		.exec()
+		.then(docs => res.send(docs))
 }
