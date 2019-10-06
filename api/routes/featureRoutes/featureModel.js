@@ -15,8 +15,8 @@ const featureSchema = mongoose.Schema({
 })
 
 // Export Contact model
-const Feature = module.exports = mongoose.model('feature', featureSchema)
+const Feature = module.exports = mongoose.model('Feature', featureSchema)
 
-module.exports.get = function (callback, limit) {
-	Feature.find(callback).limit(limit)
+module.exports.get = function (limit) {
+	Feature.find().limit(limit)
 }

@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
-const activitySchema = require('./../activityRoutes/activityModel').Schema
-const campgroundSchema = require('./../campgroundRoutes/campgroundModel').Schema
-const beachSchema = require('./../beachRoutes/beachModel').Schema
-const trailSchema = require('./../trailRoutes/trailModel').Schema
+// const activitySchema = require('./../activityRoutes/activityModel').Schema
+// const campgroundSchema = require('./../campgroundRoutes/campgroundModel').Schema
+// const beachSchema = require('./../beachRoutes/beachModel').Schema
+// const trailSchema = require('./../trailRoutes/trailModel').Schema
 
 // Setup schema
 const parkSchema = mongoose.Schema({
@@ -62,30 +62,37 @@ const parkSchema = mongoose.Schema({
 	},
 	thingsToDo: [{
 		type: mongoose.Schema.Types.ObjectId,
-		ref: activitySchema
+		ref: 'Activity'
 	}],
 	campgrounds: [{
 		type: mongoose.Schema.Types.ObjectId,
-		ref: campgroundSchema
+		ref: 'Campground'
 	}],
 	beaches: [{
 		type: mongoose.Schema.Types.ObjectId,
-		ref: beachSchema
+		ref: 'Beach'
 	}],
 	trails: [{
 		type: mongoose.Schema.Types.ObjectId,
-		ref: trailSchema
+		ref: 'Trail'
 	}]
 })
 
 // Export Contact model
-const Park = module.exports = mongoose.model('park', parkSchema) 
+const Park = module.exports = mongoose.model('Park', parkSchema) 
 
-module.exports.get = function (callback, limit) {
-	Park
-		.find(callback)
+module.exports.get = function(limit) {
+	return Park
+		.find()
 		.limit(limit)
-		.populate(activitySchema)
+		.populate('thingsToDo campgrounds beaches trails')
 		.exec()
-		.then(docs => res.send(docs))
+}
+
+module.exports.view = function() {
+console.log(Park)
+	return Park
+		.find()
+		.populate('thingsToDo')
+		.exec()
 }

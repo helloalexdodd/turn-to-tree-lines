@@ -13,8 +13,8 @@ const activitySchema = mongoose.Schema({
 	}
 })
 
-const Activity = module.exports = mongoose.model('activity', activitySchema)
+const Activity = module.exports = mongoose.model('Activity', activitySchema)
 
-module.exports.get = function (callback, limit) {
-	Activity.find(callback).limit(limit)
+module.exports.get = function (limit) {
+	Activity.find().limit(limit)
 }

@@ -13,8 +13,8 @@ const serviceSchema = mongoose.Schema({
 })
 
 // Export Contact model
-const Service = module.exports = mongoose.model('service', serviceSchema) 
+const Service = module.exports = mongoose.model('Service', serviceSchema) 
 
-module.exports.get = function (callback, limit) {
-	Service.find(callback).limit(limit)
+module.exports.get = function (limit) {
+	Service.find().limit(limit)
 }

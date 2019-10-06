@@ -10,13 +10,13 @@ router.get('/', function (req, res) {
 })
 
 router.route('/parks')
-	.get(parkController.index)
-	.post(parkController.new)
+	.get(requireAuth, parkController.view)
+	.post(requireAuth, parkController.new)
 
 router.route('/parks/:park_id')
-	.get(parkController.view)
-	.patch(parkController.update)
-	.put(parkController.update)
-	.delete(parkController.delete)
+	.get(requireAuth, parkController.view)
+	.patch(requireAuth, parkController.update)
+	.put(requireAuth, parkController.update)
+	.delete(requireAuth, parkController.delete)
 
 module.exports = router

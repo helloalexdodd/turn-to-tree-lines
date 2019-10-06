@@ -24,8 +24,8 @@ const facilitySchema = mongoose.Schema({
 })
 
 // Export Contact model
-const Facility = module.exports = mongoose.model('facility', facilitySchema) 
+const Facility = module.exports = mongoose.model('Facility', facilitySchema) 
 
-module.exports.get = function (callback, limit) {
-	Facility.find(callback).limit(limit)
+module.exports.get = function (limit) {
+	Facility.find().limit(limit)
 }

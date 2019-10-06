@@ -52,8 +52,8 @@ const trailSchema = mongoose.Schema({
 })
 
 // Export Contact model
-const Trail = module.exports = mongoose.model('trail', trailSchema) 
+const Trail = module.exports = mongoose.model('Trail', trailSchema) 
 
-module.exports.get = function (callback, limit) {
-	Trail.find(callback).limit(limit)
+module.exports.get = function (limit) {
+	Trail.find().limit(limit)
 }

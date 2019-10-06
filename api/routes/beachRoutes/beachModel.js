@@ -13,17 +13,17 @@ const beachSchema = mongoose.Schema({
 	},
 	services: [{
 		type: mongoose.Schema.Types.ObjectId,
-		ref: serviceSchema
+		ref: 'Service'
 	}]
 })
 
 // Export Contact model
-const Beach = module.exports = mongoose.model('beach', beachSchema) 
+const Beach = module.exports = mongoose.model('Beach', beachSchema) 
 
-module.exports.get = function (callback, limit) {
-	Beach
-		.find(callback)
+module.exports.get = function (limit) {
+	return Beach
+		.find()
 		.limit(limit)
-		// .populate('service')
-		// .exec()
+		.populate('service')
+		.exec()
 }

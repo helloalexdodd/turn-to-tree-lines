@@ -1,24 +1,15 @@
-// Import park model
 const Park = require('./parkModel')
 
-// Handle index actions
-exports.index = function (req, res) {
-	Park.get(function (err, parks) {
-		if (err) {
-			res.json({
-				status: "error",
-				message: err,
-			})
-		}
-		res.json({
-			status: "success",
-			message: "Parks retrieved successfully",
-			data: parks
-		})
-	})
+exports.view = async function (req, res) {
+	if (req.params.park_id) {
+		const park = await Park.findById(req.params.park_id)
+		res.send(park)
+		return
+	}
+	const parks = await Park.get()
+	res.send(parks)
 }
 
-// Handle create park actions
 exports.new = function (req, res) {
 	const park = new Park()
 	park.name = req.body.name
@@ -30,8 +21,6 @@ exports.new = function (req, res) {
 	park.description = req.body.description
 	park.map = req.body.map
 
-
-	// save the park and check for errors
 	park.save(function (err) {
 		if (err) {
 			res.json(err)
@@ -44,21 +33,6 @@ exports.new = function (req, res) {
 	})
 }
 
-// Handle view park info
-exports.view = function (req, res) {
-	Park.findById(req.params.park_id, function (err, park) {
-		if (err) {
-			res.send(err)
-			return
-		}
-		res.json({
-			message: 'Park details loading..',
-			data: park
-		})
-	})
-}
-
-// Handle update park info
 exports.update = function (req, res) {
 	Park.findById(req.params.park_id, function (err, park) {
 		if (err) {
@@ -74,12 +48,10 @@ exports.update = function (req, res) {
 		park.description = req.body.description ? req.body.description : park.description
 		park.map = req.body.map ? req.body.map : park.map
 		park.thingsToDo = req.body.thingsToDo ? req.body.thingsToDo : park.thingsToDo
-		// park.campgrounds = req.body.campgrounds ? req.body.campgrounds : park.campgrounds
-		// park.beaches = req.body.beaches ? req.body.beaches : park.beaches
-		// park.trails = req.body.trails ? req.body.trails : park.trails
-		
+		park.campgrounds = req.body.campgrounds ? req.body.campgrounds : park.campgrounds
+		park.beaches = req.body.beaches ? req.body.beaches : park.beaches
+		park.trails = req.body.trails ? req.body.trails : park.trails
 
-		// save the park and check for errors
 		park.save(function (err) {
 			if (err) {
 				res.json(err)
@@ -93,9 +65,7 @@ exports.update = function (req, res) {
 	})
 }
 
-// Handle delete park
 exports.delete = function (req, res) {
-	console.log(req.params)
 	Park.remove({
 		_id: req.params.park_id
 	}, function (err, park) {

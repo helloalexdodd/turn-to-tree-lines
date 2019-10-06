@@ -45,13 +45,16 @@ const campgroundSchema = mongoose.Schema({
 	},
 	trails: [{
 		type: mongoose.Schema.Types.ObjectId,
-		ref: trailSchema
+		ref: 'Trail'
 	}]
 })
 
 // Export Contact model
-const Campground = module.exports = mongoose.model('campground', campgroundSchema) 
+const Campground = module.exports = mongoose.model('Campground', campgroundSchema) 
 
-module.exports.get = function (callback, limit) {
-	Campground.find(callback).limit(limit)
+module.exports.get = function (limit) {
+	Campground
+		.find()
+		.limit(limit)
+		.populate('Trail')
 }
