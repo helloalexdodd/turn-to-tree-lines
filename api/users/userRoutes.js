@@ -21,16 +21,17 @@ router
 	.post(async (req, res, next) => {
 		try {
 			const user = await userService.isUser(req.body);
-			if (user) {
-				const token = await tokenService.issueToken(user);
-				res.status(200).json({
-					data: {
-						token
-					}
-				})
-			} else {
+			// we could reduce indentation here by reversing the logic:
+			if (!user) {
 				next();
 			}
+			
+			const token = await tokenService.issueToken(user);
+			res.status(200).json({
+				data: {
+					token
+				}
+			})
 		} catch (e) {
 			next(e);
 		}

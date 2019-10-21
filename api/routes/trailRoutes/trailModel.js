@@ -35,6 +35,8 @@ const trailSchema = mongoose.Schema({
 		required: true
 	},
 	trailhead: {
+		// If we have an enum with only one option, maybe a boolean makes more sense?
+		// ex. isPoint: true/false
 		type: {
 			type: String,
 			enum: ['Point'],

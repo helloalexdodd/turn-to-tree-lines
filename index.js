@@ -36,6 +36,9 @@ mongoose.connect(URL, { useNewUrlParser: true })
 	.catch((err) => console.log(err))
 
 // Added check for DB connection
+// This will actually always resolve to the "Else" path, it will never not exist
+// The mongoose.connection property is always a connection object, and is therefore always truthy
+// (even if you haven't connected yet!) you'd want to handle this logic in the .then/catch above
 if (!db) {
 	console.log('Error connecting db')
 } else {
@@ -46,6 +49,7 @@ if (!db) {
 app.get('/', (req, res) => res.send("A successful call! Read the documentation to learn which endpoints you can hit for the specific information you're looking for."))
 
 // links to all routes
+// In general, you should always put all your imports/requires at the top of a file as a best practice
 const activityRoutes = require('./api/routes/activityRoutes/activityRoutes')
 const beachRoutes = require('./api/routes/beachRoutes/beachRoutes')
 const campgroundRoutes = require('./api/routes/campgroundRoutes/campgroundRoutes')
@@ -56,6 +60,7 @@ const trailRoutes = require('./api/routes/trailRoutes/trailRoutes')
 const featureRoutes = require('./api/routes/featureRoutes/featureRoutes')
 
 // Use Api routes in the App
+// Very organized and clean, love it!
 app.use('/api', activityRoutes)
 app.use('/api', beachRoutes)
 app.use('/api', campgroundRoutes)
